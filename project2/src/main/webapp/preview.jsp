@@ -5,29 +5,22 @@
     <meta charset="UTF-8">
     <title>Preview Post</title>
 </head>
-<script type="text/javascript">
-    function OnSubmit()
-    {
-      if(document.pressed == 'Return')
-      {
-       document.form1.action ="post";
-      }
-    }
-</script>
 
 <body>
     <div><h1>Preview Post</h1></div>
-    <form name="form1" method="GET" id="form1" onsubmit="return OnSubmit();">
+    <form action="post" name="form1" method="GET" id="form1">
+        <input type="hidden" name="username" value=<%= request.getParameter("username") %> >
+        <input type="hidden" name="postid" value=<%= request.getParameter("postid") %> >
+        <input type="hidden" name="title" value=<%= request.getParameter("title") %> >
+        <input type="hidden" name="body" value=<%= request.getParameter("body") %> >
         <div>
-            <button type="submit" form="form1" onclick="document.pressed=this.value" name="buttonType" value="Return">Return</button>
+            <button type="submit" form="form1" name="action" value="open">Return</button>
         </div>
         <div>
-            <label for="title">Title</label>
-            <input type="text" name="title" id="title">
+            <h2><%= request.getParameter("title") %></h2>
         </div>
         <div>
-            <label for="body">Body</label>
-            <textarea style="height: 20rem;" name="body" id="body"></textarea>
+            <%= request.getParameter("body") %>
         </div>
     </form>
 </body>

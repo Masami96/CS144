@@ -115,7 +115,7 @@ public class Editor extends HttpServlet {
                 System.out.println("Invalid Paramaters, name required.\n");
               }
               else {
-                rs = s.executeQuery("SELECT title, modified, created FROM Posts Where username=" + name);
+                rs = s.executeQuery("SELECT title, modified, created FROM Posts Where username= '" + name + "'");
                 while (rs.next() ){
                   title = rs.getString("title");
                   String modified = rs.getString("modified");
@@ -191,10 +191,16 @@ public class Editor extends HttpServlet {
             Timestamp ts = new Timestamp(date.getTime());
             if (id <= 0){
               rs = s.executeQuery("SELECT MAX(postid) FROM Posts WHERE username= '" + name + "'");
+
               while (rs.next() ){
+
                 num = rs.getString("MAX(postid)");
+                if(num == null) num = "0";
                 id = Integer.valueOf(num);
+                id++;
+                num = Integer.toString(id);
               }
+              
               s.executeUpdate("INSERT INTO Posts Values('" + name + "', '" + num + "', '" + title + "', '" + body + "', '" + sdf.format(ts) + "', '" + sdf.format(ts) + "')");
               request.getRequestDispatcher("/list.jsp").forward(request, response);
             }
