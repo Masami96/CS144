@@ -78,7 +78,7 @@ public class Editor extends HttpServlet {
             //GET: open, preview, list
             if (act == null){
               //error message
-              System.out.println("Need to select a valid action.")
+              System.out.println("Need to select a valid action.");
             }
 
             if (act.equals("open")){

@@ -34,11 +34,11 @@
         </div>
         <div>
             <label for="title">Title</label>
-            <input type="text" name="title" id="title">
+            <input type="text" name="title" id="title" value="hi">
         </div>
         <div>
             <label for="body">Body</label>
-            <textarea style="height: 20rem;" name="body" id="body"></textarea>
+            <textarea style="height: 20rem;" name="body" id="body" value=<%= request.getParameter("body") %>></textarea>
         </div>
     </form>
 </body>
