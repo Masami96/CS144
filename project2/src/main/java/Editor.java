@@ -37,6 +37,7 @@ public class Editor extends HttpServlet {
           System.out.println(ex);
           return;
       }
+
         /*  write any servlet initialization code here or remove this function */
     }
 
@@ -54,6 +55,7 @@ public class Editor extends HttpServlet {
     public void doGet(HttpServletRequest request, HttpServletResponse response)
         throws ServletException, IOException
     {
+            //request.getRequestDispatcher("/edit.jsp").forward(request, response);
           	// implement your GET method handling code here
             Connection c = null;
             Statement  s = null;
@@ -76,9 +78,10 @@ public class Editor extends HttpServlet {
             //GET: open, preview, list
             if (act == null){
               //error message
+              System.out.println("Need to select a valid action.")
             }
 
-            if (act == "open"){
+            if (act.equals("open")){
               if (name == null || num == null){
                 System.out.println("Invalid Paramaters, name and postid required.\n");
               }
@@ -96,7 +99,7 @@ public class Editor extends HttpServlet {
                 request.getRequestDispatcher("/edit.jsp").forward(request, response);
               }
             }
-            if (act == "preview"){
+            if (act.equals("preview")){
               if (name == null || num == null ||  title == null || body == null){
                 System.out.println("Invalid Paramaters, name, postid, title, body required.\n");
               }
@@ -104,7 +107,7 @@ public class Editor extends HttpServlet {
                 request.getRequestDispatcher("/preview.jsp").forward(request, response);
               }
             }
-            if (act == "list"){
+            if (act.equals("list")){
               if (name == null){
                 System.out.println("Invalid Paramaters, name required.\n");
               }
@@ -134,6 +137,7 @@ public class Editor extends HttpServlet {
             try { s.close(); } catch (Exception e) { /* ignored */ }
             try { c.close(); } catch (Exception e) { /* ignored */ }
         }
+        //request.getRequestDispatcher("/edit.jsp").forward(request, response);
     }
 
     /**
