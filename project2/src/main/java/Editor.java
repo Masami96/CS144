@@ -59,6 +59,7 @@ public class Editor extends HttpServlet {
             Statement  s = null;
             ResultSet rs = null;
 
+            try {
             /* create an instance of a Connection object */
             c = DriverManager.getConnection("jdbc:mysql://localhost:3306/CS144", "cs144", "");
 
@@ -67,19 +68,22 @@ public class Editor extends HttpServlet {
             String act = request.getParameter("action");
 
             String name = request.getParameter("username");
-            Float num = request.getParameter("postid");
+            String num = request.getParameter("postid");
             String title = request.getParameter("title");
             String body = request.getParameter("body");
 
             //open, save, delete, preview, list
             //GET: open, preview, list
+            if (act == null){
+              //error message
+            }
 
             if (act == "open"){
               if (name == null || num == null){
-                System.out.println("Invalid Paramaters, name and postid required.\n")
+                System.out.println("Invalid Paramaters, name and postid required.\n");
               }
               else if (title == null || body == null){
-                rs = s.executeQuery("SELECT title, body FROM Posts Where username=" + name + "and postid=" + num)
+                rs = s.executeQuery("SELECT title, body FROM Posts Where username=" + name + "and postid=" + num);
                 while (rs.next() ){
                   title = rs.getString("title");
                   body = rs.getString("body");
@@ -92,6 +96,29 @@ public class Editor extends HttpServlet {
                 request.getRequestDispatcher("/edit.jsp").forward(request, response);
               }
             }
+            if (act == "preview"){
+              if (name == null || num == null ||  title == null || body == null){
+                System.out.println("Invalid Paramaters, name, postid, title, body required.\n");
+              }
+              else {
+                request.getRequestDispatcher("/preview.jsp").forward(request, response);
+              }
+            }
+            if (act == "list"){
+              if (name == null){
+                System.out.println("Invalid Paramaters, name required.\n");
+              }
+              else {
+                rs = s.executeQuery("SELECT title, modified, created FROM Posts Where username=" + name);
+                while (rs.next() ){
+                  title = rs.getString("title");
+                  String modified = rs.getString("modified");
+                  String created = rs.getString("created");
+                }
+                request.getRequestDispatcher("/list.jsp").forward(request, response);
+              }
+            }
+          } //end try
          catch (SQLException ex){
             System.out.println("SQLException caught");
             System.out.println("---");
