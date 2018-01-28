@@ -8,14 +8,21 @@
 <script type="text/javascript">
     function OnSubmit()
     {
-      if(document.pressed == 'Save' || document.pressed == 'Close' || document.pressed == 'Delete')
+      if(document.pressed == 'save' || document.pressed == 'delete')
       {
        document.form1.action ="list";
+       document.form1.method ="POST";
       }
       else
-      if(document.pressed == 'Preview')
+      if(document.pressed == 'preview')
       {
         document.form1.action ="preview";
+        document.form1.method ="GET";
+      }
+      if(document.pressed == 'close')
+      {
+        document.form1.action ="preview";
+        document.form1.method ="GET";
       }
       return true;
     }
@@ -23,12 +30,13 @@
 
 <body>
     <div><h1>Edit Post</h1></div>
-    <form name="form1" method="GET" id="form1" onsubmit="return OnSubmit();">
+    <form name="form1" id="form1" onsubmit="return OnSubmit();">
+        <input type="hidden" name="username" value=<%= request.getParameter("username") %> >
         <div>
-            <button type="submit" form="form1" onclick="document.pressed=this.value" name="buttonType" value="Save">Save</button>
-            <button type="submit" form="form1" onclick="document.pressed=this.value" name="buttonType" value="Close">Close</button>
-            <button type="submit" form="form1" onclick="document.pressed=this.value" name="buttonType" value="Preview">Preview</button>
-            <button type="submit" form="form1" onclick="document.pressed=this.value" name="buttonType" value="Delete">Delete</button>
+            <button type="submit" form="form1" onclick="document.pressed=this.value" name="action" value="save">Save</button>
+            <button type="submit" form="form1" onclick="document.pressed=this.value" name="action" value="close">Close</button>
+            <button type="submit" form="form1" onclick="document.pressed=this.value" name="action" value="preview">Preview</button>
+            <button type="submit" form="form1" onclick="document.pressed=this.value" name="action" value="delete">Delete</button>
         </div>
         <div>
             <label for="title">Title</label>
