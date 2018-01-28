@@ -86,7 +86,7 @@ public class Editor extends HttpServlet {
                 System.out.println("Invalid Paramaters, name and postid required.\n");
               }
               else if (title == null || body == null){
-                rs = s.executeQuery("SELECT title, body FROM Posts Where username=" + name + "and postid=" + num);
+                rs = s.executeQuery("SELECT title, body FROM Posts Where username= '" + name + "' and postid= '" + num + "'");
                 while (rs.next() ){
                   title = rs.getString("title");
                   body = rs.getString("body");
