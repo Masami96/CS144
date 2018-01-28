@@ -10,18 +10,11 @@
     {
       if(document.pressed == 'save' || document.pressed == 'delete')
       {
-       document.form1.action ="list";
        document.form1.method ="POST";
       }
       else
-      if(document.pressed == 'preview')
+      if(document.pressed == 'preview' || document.pressed == 'close')
       {
-        document.form1.action ="preview";
-        document.form1.method ="GET";
-      }
-      if(document.pressed == 'close')
-      {
-        document.form1.action ="preview";
         document.form1.method ="GET";
       }
       return true;
@@ -30,8 +23,9 @@
 
 <body>
     <div><h1>Edit Post</h1></div>
-    <form name="form1" id="form1" onsubmit="return OnSubmit();">
+    <form action="post" name="form1" id="form1" onsubmit="return OnSubmit();">
         <input type="hidden" name="username" value=<%= request.getParameter("username") %> >
+        <input type="hidden" name="postid" value=<%= request.getParameter("postid") %> >
         <div>
             <button type="submit" form="form1" onclick="document.pressed=this.value" name="action" value="save">Save</button>
             <button type="submit" form="form1" onclick="document.pressed=this.value" name="action" value="close">Close</button>

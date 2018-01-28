@@ -10,23 +10,5 @@
         <servlet-name>Editor</servlet-name>
         <url-pattern>/post</url-pattern>
     </servlet-mapping>
-
-    <servlet>
-        <servlet-name>Previewer</servlet-name>
-        <servlet-class>Previewer</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>Previewer</servlet-name>
-        <url-pattern>/preview</url-pattern>
-    </servlet-mapping>
-
-    <servlet>
-        <servlet-name>Lister</servlet-name>
-        <servlet-class>Lister</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>Lister</servlet-name>
-        <url-pattern>/list</url-pattern>
-    </servlet-mapping>
     
 </web-app>
