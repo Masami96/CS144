@@ -94,8 +94,18 @@ public class Editor extends HttpServlet {
                   title = rs.getString("title");
                   body = rs.getString("body");
                 }
+              if (title != null){
                 request.setAttribute("title", title);
+              }
+              else {
+                request.setAttribute("title", "");
+              }
+              if (body != null){
                 request.setAttribute("body", body);
+              }
+              else {
+                request.setAttribute("body", "");
+              }
                 request.getRequestDispatcher("/edit.jsp").forward(request, response);
               }
               else {
