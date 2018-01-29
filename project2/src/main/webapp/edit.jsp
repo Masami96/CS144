@@ -22,8 +22,8 @@
 <body>
     <form class="w3-container w3-card-4 w3-light-grey" action="post" name="form1" id="form1" onsubmit="return OnSubmit();">
         <h1>Edit Post</h1>
-        <input type="hidden" name="username" value=<%= request.getParameter("username") %> >
-        <input type="hidden" name="postid" value=<%= request.getParameter("postid") %> >
+        <input type="hidden" name="username" value="<%= request.getParameter("username") %>" >
+        <input type="hidden" name="postid" value="<%= request.getParameter("postid") %>" >
         <div>
             <button class="w3-btn w3-small w3-round-large w3-ripple w3-white" type="submit" form="form1" onclick="document.pressed=this.value" name="action" value="save">Save</button>
             <button class="w3-btn w3-small w3-round-large w3-ripple w3-white" type="submit" form="form1" onclick="document.pressed=this.value" name="action" value="list">Close</button>
